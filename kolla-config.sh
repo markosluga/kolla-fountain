@@ -4,7 +4,7 @@ sudo sed -i "27i config_strategy: \"COPY_ALWAYS\" " /etc/kolla/globals.yml
 sudo sed -i "28i kolla_base_distro: \"ubuntu\" " /etc/kolla/globals.yml
 sudo sed -i "29i kolla_install_type: \"binary\" " /etc/kolla/globals.yml
 sudo sed -i "30i openstack_release: \"wallaby\" " /etc/kolla/globals.yml
-sudo sed -i "31i kolla_internal_vip_address: \"172.25.216.200\" " /etc/kolla/globals.yml
+sudo sed -i "31i kolla_internal_vip_address: \"172.20.208.200\" " /etc/kolla/globals.yml
 sudo sed -i "32i network_interface: \"eth0\" " /etc/kolla/globals.yml
 sudo sed -i "33i api_interface: \"{{ network_interface }}\" " /etc/kolla/globals.yml
 sudo sed -i "34i tunnel_interface: \"eth1\" " /etc/kolla/globals.yml
