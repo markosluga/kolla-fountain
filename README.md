@@ -12,6 +12,8 @@ eth1 – tunnel network – this represents the “host only” type of network 
 eth2 – provider network #1 STATIC
 eth3 – provider network #2 STATIC
 
+Change eth0-3 to your device names.
+
 * Note that the provider adapters are supposed to be unconfigured, but for me traffic didn't flow unless I put a static IP on the provider network, so I just configured them with am available IP in the provider range to ensure they were up before I ran the scripts.
 
 See https://github.com/markosluga/kolla-fountain/blob/main/etc/netplan/00-installer-config.yaml for a reference netplan
@@ -39,6 +41,8 @@ Deploys all the packages required to run kolla ansible and configures ansible an
 * Change the IP address to an availabe address on your adapter at line 8 in kolla-shaker.sh
 
 `sudo sed -i "31i kolla_internal_vip_address: \"172.20.208.200\" " /etc/kolla/globals.yml`
+
+* Change the neutron_external adapters to your physical devices.
 
 ## kolla-post-install.sh
 
