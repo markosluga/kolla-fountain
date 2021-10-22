@@ -20,7 +20,7 @@ sudo sed -i "11i host_key_checking=False" /etc/ansible/ansible.cfg
 sudo sed -i "12i pipelining=True" /etc/ansible/ansible.cfg
 sudo sed -i "13i forks=100" /etc/ansible/ansible.cfg
 # Set up kolla all-in-one 
-cp ~/OpenStack-kolla/all-in-one ~/all-in-one
+cp ~/kolla-fountain/all-in-one ~/all-in-one
 sed -i '4s/$/localhost	ansible_connection=local ansible_user=kolla ansible_become=true/' ~/all-in-one
 sed -i '19s/$/localhost       ansible_connection=local become=true/' ~/all-in-one
 # Configure kolla globals
