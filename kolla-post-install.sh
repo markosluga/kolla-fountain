@@ -10,7 +10,7 @@ openstack subnet create --network provider1 --gateway 192.168.1.1 --subnet-range
 openstack network create  --share --external --provider-physical-network physnet2 --provider-network-type flat provider2
 openstack subnet create --network provider2 --gateway 192.168.77.1 --subnet-range 192.168.77.1/24  subnet2
 openstack network create private
-openstack subnet create privsubnet --network private --subnet-range 192.0.123.0/24
+openstack subnet create privsubnet --network private --subnet-range 192.168.123.0/24
 openstack router create router1 
 openstack router set router1 --external-gateway provider1
 openstack router add subnet router1 privsubnet
