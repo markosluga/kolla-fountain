@@ -26,11 +26,17 @@ sudo sed -i "48i enable_openvswitch: \"yes\" " /etc/kolla/globals.yml
 # Add the OVS mappings
 sudo echo "[ml2_type_flat]" >>  /etc/kolla/config/neutron/ml2_conf.ini
 sudo echo "flat_networks = physnet1,physnet2" >>  /etc/kolla/config/neutron/ml2_conf.ini
-#sudo echo "[ovs]" >>  /etc/kolla/config/neutron/ml2_conf.ini
-#sudo echo "bridge_mappings = physnet1:brex,physnet2:brex2" >>  /etc/kolla/config/neutron/ml2_conf.ini
-sudo echo "[ovs]" >> /etc/kolla/config/neutron/openvswitch_agent.ini
-sudo echo "tunnel_bridge = br-tun" >> /etc/kolla/config/neutron/openvswitch_agent.ini
-sudo echo "int_peer_patch_port = patch-tun" >> /etc/kolla/config/neutron/openvswitch_agent.ini
-sudo echo "tun_peer_patch_port = patch-int" >> /etc/kolla/config/neutron/openvswitch_agent.ini
-sudo echo "bridge_mappings = physnet1:brex,physnet2:brex2" >> /etc/kolla/config/neutron/openvswitch_agent.ini
-sudo echo "use_veth_interconnection = false" >> /etc/kolla/config/neutron/openvswitch_agent.ini
+#ml2
+sudo echo "[ovs]" >> /etc/kolla/config/neutron/ml2_conf.ini
+sudo echo "tunnel_bridge = br-tun" >> /etc/kolla/config/neutron/ml2_conf.inii
+sudo echo "int_peer_patch_port = patch-tun" >> /etc/kolla/config/neutron/ml2_conf.ini
+sudo echo "tun_peer_patch_port = patch-int" >> /etc/kolla/config/neutron/ml2_conf.ini
+sudo echo "bridge_mappings = physnet1:brex,physnet2:brex2" >> /etc/kolla/config/neutron/ml2_conf.ini
+sudo echo "use_veth_interconnection = false" >> /etc/kolla/config/neutron/ml2_conf.ini
+#agent
+#sudo echo "[ovs]" >> /etc/kolla/config/neutron/openvswitch_agent.ini
+#sudo echo "tunnel_bridge = br-tun" >> /etc/kolla/config/neutron/openvswitch_agent.ini
+#sudo echo "int_peer_patch_port = patch-tun" >> /etc/kolla/config/neutron/openvswitch_agent.ini
+#sudo echo "tun_peer_patch_port = patch-int" >> /etc/kolla/config/neutron/openvswitch_agent.ini
+#sudo echo "bridge_mappings = physnet1:brex,physnet2:brex2" >> /etc/kolla/config/neutron/openvswitch_agent.ini
+#sudo echo "use_veth_interconnection = false" >> /etc/kolla/config/neutron/openvswitch_agent.ini
