@@ -1,4 +1,4 @@
-# The kolla-fountain
+# The kolla-fountain v.1.0.7
 
 ## An easy way to deploy a single host OpenStack with kolla.
 
@@ -27,7 +27,7 @@ sudo vgcreate cinder-volumes /dev/sdb`
 
 ## kolla-shaker.sh
 
-Deploys all the packages required to run kolla ansible and configures ansible and an all-in-one kolla deployment. Unless you are changing versions of kolla/ansible/python no changes are needed. **This deployment does not use a python virtual environment**
+Deploys all the packages required to run kolla ansible and configures ansible and an all-in-one kolla deployment. Unless you are changing versions of kolla/ansible/python no changes are needed. **This deployment does not use a python virtual environment!**
 
 ## kolla-maker.sh
 
