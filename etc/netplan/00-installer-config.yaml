@@ -1,0 +1,23 @@
+network:
+  ethernets:
+    eth0:
+      dhcp4: true
+    eth1:
+      addresses:
+      - 192.168.99.100/24
+      nameservers:
+        addresses: []
+        search: []
+    eth2:
+      addresses:
+      - 192.168.1.200/24
+      nameservers:
+        addresses: []
+        search: []
+    eth3:
+      addresses:
+      - 192.168.77.200/24
+      nameservers:
+        addresses: []
+        search: []
+  version: 2
