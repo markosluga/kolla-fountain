@@ -14,5 +14,4 @@ openstack subnet create privsubnet --network private --subnet-range 192.0.123.0/
 openstack router create router1 
 openstack router set router1 --external-gateway provider1
 openstack router add subnet router1 privsubnet
-echo "Log in to the web at http://172.20.208.200/ with the following password:"
-sudo grep -Po '(?<=^export OS_PASSWORD=)\w*$' /etc/kolla/admin-openrc.sh
+echo "Log in to the web at http://172.20.208.200/ as \"admin\" with the following password: `sudo grep -Po '(?<=^export OS_PASSWORD=)\w*$' /etc/kolla/admin-openrc.sh` "
