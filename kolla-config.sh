@@ -21,6 +21,7 @@ sudo sed -i "44i enable_nova: \"{{ enable_openstack_core | bool }}\" " /etc/koll
 sudo sed -i "45i nova_compute_virt_type:  \"qemu\" " /etc/kolla/globals.yml
 sudo sed -i "46i enable_neutron_provider_networks: \"yes\" " /etc/kolla/globals.yml
 sudo sed -i "47i enable_neutron_port_forwarding: \"yes\" " /etc/kolla/globals.yml
+sudo sed -i "48i enable_openvswitch: \"yes\" " /etc/kolla/globals.yml
 # Add the OVS mappings
 sudo echo "[ml2_type_flat]" >>  /etc/kolla/config/neutron/ml2_conf.ini
 sudo echo "flat_networks = physnet1,physnet2" >>  /etc/kolla/config/neutron/ml2_conf.ini
