@@ -36,7 +36,11 @@ sudo sed -i "36i neutron_external_interface: \"eth2,eth3\" " /etc/kolla/globals.
 sudo sed -i "37i neutron_plugin_agent: \"openvswitch\" " /etc/kolla/globals.yml
 sudo sed -i "38i enable_openstack_core: \"yes\" " /etc/kolla/globals.yml
 sudo sed -i "39i enable_cinder: \"yes\" " /etc/kolla/globals.yml
-sudo sed -i "40i enable_cinder_backend_lvm: \"yes\" " /etc/kolla/globals.yml
+sudo sed -i "40i enable_cinder_backup: \"no\" " /etc/kolla/globals.yml
+sudo sed -i "41i enable_cinder_backend_lvm: \"yes\" " /etc/kolla/globals.yml
+sudo sed -i "42i cinder_volume_group: \"cinder-volumes\" " /etc/kolla/globals.yml
+sudo sed -i "43i enable_cinder_backend_iscsi: \"{{ enable_cinder_backend_lvm | bool }}\" " /etc/kolla/globals.yml
+sudo sed -i "44i enable_nova: \"{{ enable_openstack_core | bool }}\" " /etc/kolla/globals.yml
 # Add the OVS mappings
 sudo echo "[ml2_type_flat]" >>  /etc/kolla/config/neutron/ml2_conf.ini
 sudo echo "flat_networks = physnet1,physnet2" >>  /etc/kolla/config/neutron/ml2_conf.ini
