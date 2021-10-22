@@ -12,6 +12,8 @@ eth1 – tunnel network – this represents the “host only” type of network 
 eth2 – provider network #1 STATIC
 eth3 – provider network #2 STATIC
 
+* Note that the provider adapters are supposed to be unconfigured, but for me traffic didn't flow unless I put a static IP on the provider network, so I just configured them with am available IP in the provider range to ensure they were up before I ran the scripts.
+
 See https://github.com/markosluga/kolla-fountain/blob/main/etc/netplan/00-installer-config.yaml for a reference netplan
 
 # Getting startred:
