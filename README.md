@@ -5,16 +5,17 @@
 * Install Ubuntu 20.04.3
 * Create a user called kolla
 * Set up the networks. 
-I am using 4 adapters, but you might not need that many
 
-eth0 – management network – this is my local network and allows me to reach the internet during install. DHCP
-eth1 – tunnel network – this represents the “host only” type of network where the VM private networks will get created on VxLANs. STATIC
-eth2 – provider network #1 STATIC
-eth3 – provider network #2 STATIC
+I am using 4 adapters, but you might want to go with just one provider network or even merge the private and managment into one.
+
+* eth0 – management network – this is my local network and allows me to reach the internet during install. DHCP
+* eth1 – tunnel network – this represents the “host only” type of network where the VM private networks will get created on VxLANs. STATIC
+* eth2 – provider network #1 STATIC
+* eth3 – provider network #2 STATIC
 
 Change eth0-3 to your device names.
 
-* Note that the provider adapters are supposed to be unconfigured, but for me traffic didn't flow unless I put a static IP on the provider network, so I just configured them with am available IP in the provider range to ensure they were up before I ran the scripts.
+* Note that the provider adapters are **supposed to be unconfigured**, but for me traffic didn't flow unless I put a static IP on the provider network, so I just configured them with am available IP in the provider range to ensure they were up before I ran the scripts.
 
 See https://github.com/markosluga/kolla-fountain/blob/main/etc/netplan/00-installer-config.yaml for a reference netplan
 
