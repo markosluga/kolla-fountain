@@ -3,7 +3,7 @@
 ## An easy way to deploy a single host OpenStack with kolla.
 
 * Install Ubuntu 20.04.3
-* Create a user called kolla
+* Create a user called kolla - you can use the [user-kolla.sh](https://github.com/markosluga/kolla-fountain/blob/main/user-kolla.sh) script if you like.
 * Set up the networks. 
 
 I am using 4 adapters, but you might want to go with just one provider network or even merge the private and managment into one.
