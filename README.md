@@ -17,7 +17,7 @@ Change eth0-3 to your device names.
 
 * Note that the provider adapters are **supposed to be unconfigured**, but for me traffic didn't flow unless I put a static IP on the provider network, so I just configured them with am available IP in the provider range to ensure they were up before I ran the scripts.
 
-See https://github.com/markosluga/kolla-fountain/blob/main/etc/netplan/00-installer-config.yaml for a reference netplan
+See [example netplan](https://github.com/markosluga/kolla-fountain/blob/main/etc/netplan/00-installer-config.yaml) as reference.
 
 # Getting startred:
 
