@@ -45,19 +45,19 @@ Deploys all the packages required to run kolla ansible and configures ansible an
 
 * Change the IP address to an availabe address on your adapter at line 8 in kolla-shaker.sh
 
-`sudo sed -i "31i kolla_internal_vip_address: \"172.20.208.200\" " /etc/kolla/globals.yml`
+`sudo sed -i "31i kolla_internal_vip_address: \"YOUR-IP-GOES-HERE\" " /etc/kolla/globals.yml`
 
 * Change eth0 to your management adapter at line 9 in kolla-shaker.sh
 
-`sudo sed -i "32i network_interface: \"eth0\" " /etc/kolla/globals.yml`
+`sudo sed -i "32i network_interface: \"YOUR-DEVICE1-GOES-HERE\" " /etc/kolla/globals.yml`
 
 * Change eth1 to your tunnel adapter at line 11 in kolla-shaker.sh
 
-`sudo sed -i "34i tunnel_interface: \"eth1\" " /etc/kolla/globals.yml`
+`sudo sed -i "34i tunnel_interface: \"YOUR-DEVICE2-GOES-HERE\" " /etc/kolla/globals.yml`
 
 * Change the neutron_external adapters to your physical devices at line 13 in kolla-shaker.sh
 
-`sudo sed -i "36i neutron_external_interface: \"eth2,eth3\" " /etc/kolla/globals.yml`
+`sudo sed -i "36i neutron_external_interface: \"YOUR-DEVICE3-GOES-HERE,YOUR-DEVICE4-GOES-HERE\" " /etc/kolla/globals.yml`
 
 ## kolla-post-install.sh
 
