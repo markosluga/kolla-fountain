@@ -34,9 +34,31 @@ Host prep just prepares the host with kolla as a sudoer with no password (since 
 `sudo pvcreate /dev/sdb
 sudo vgcreate cinder-volumes /dev/sdb`
 
-## kolla-shaker.sh
+# Multi node
+
+## kolla-shaker-single.sh
 
 Deploys all the packages required to run kolla ansible and configures ansible and an all-in-one kolla deployment. Unless you are changing versions of kolla/ansible/python no changes are needed. **This deployment does not use a python virtual environment!**
+
+# Multi node
+
+## kolla-shaker-multi.sh
+
+Deploys the packages on multiple nodes. Removes the default entries in the multinode kolla ansible file and replaces them with the hostnames for the deployment. 
+
+Multiple host format is *host[startnumber,endnumber]* - kolla[02:03] represents hosts kolla02 and kolla03
+
+Replace the following:
+
+Line 25: Replace kolla[02:03] with the hostname or hostnames of your controller node(s): 
+
+Line 27: Replace kolla04 with the hostname or hostnames of your network node(s)
+
+Line 29: Replace kolla01 with the hostname or hostnames of your compute node(s)
+
+Line 31: Replace kolla[02:03] with the hostname or hostnames of your montioring node(s)
+
+Line 33: Replace kolla[01:04] with the hostname or hostnames of your montioring node(s)
 
 ## kolla-maker.sh
 
@@ -73,9 +95,13 @@ Deploys all the packages required to run kolla ansible and configures ansible an
 
 * Feel free to change these networks to match your subnet ranges
 
-## deploy.sh
+## nodes-multi.sh
 
-Once you have aedityed the files you can run deploy.sh since it simply runs the host-prep.sh, kolla-shaker.sh, kolla-maker.sh and kolla-post-install.sh automatically.
+Required to run on the nodes (not the deployment one) in a multinode scenario.
+
+## deploy-single.sh and deploy-multi.sh
+
+Once you have edited the files above you can run the single or multi-node deployment script on the node of your choice.
 
 (c) marko@markocloud.com
 
