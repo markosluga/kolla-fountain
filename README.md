@@ -23,7 +23,7 @@ Change eth0-3 to your device names.
 
 See [example netplan](https://github.com/markosluga/kolla-fountain/blob/main/etc/netplan/00-installer-config.yaml) as reference.
 
-In later iterrations I enabled a small DHCP on the tunnel and provider networks just to bring the adapters up and it works the same. An example of that netplan is [here](https://github.com/markosluga/kolla-fountain/blob/main/etc/netplan/01-installer-config.yaml)
+In later iterrations I enabled a small DHCP on the tunnel and provider networks just to bring the adapters up and it works the same. An example of that netplan is [here](https://github.com/markosluga/kolla-fountain/blob/main/etc/netplan/01-installer-config.yaml). As you can see I also opted for a static IP for eth0 since I hardcoded my devices with a new domain .lan and set up a small DNS on my router.
 
 # Getting startred:
 
