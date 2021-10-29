@@ -43,4 +43,4 @@ sudo echo "use_veth_interconnection = false" >> /etc/kolla/config/neutron/ml2_co
 #sudo echo "use_veth_interconnection = false" >> /etc/kolla/config/neutron/openvswitch_agent.ini
 
 # Deploy Kolla
-kolla-ansible -i ~/all-in-one deploy
+#kolla-ansible -i ~/all-in-one deploy
