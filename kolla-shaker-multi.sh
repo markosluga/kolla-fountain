@@ -28,8 +28,8 @@ sed -i '13ikolla4' ~/multinode
 sed -i '16d' ~/multinode
 sed -i '16ikolla01' ~/multinode
 sed -i '19d' ~/multinode
-sed -i '19icontrol' ~/multinode
+sed -i '19ikolla[02:03]' ~/multinode
 sed -i '27d' ~/multinode
-sed -i '27icontrol' ~/multinode
+sed -i '27ikolla[01:04]' ~/multinode
 # Ensure python docker module is imported
 python3 -c "import docker"
