@@ -20,7 +20,16 @@ sudo sed -i "11i host_key_checking=False" /etc/ansible/ansible.cfg
 sudo sed -i "12i pipelining=True" /etc/ansible/ansible.cfg
 sudo sed -i "13i forks=100" /etc/ansible/ansible.cfg
 # Set up kolla all-in-one 
-sed -i '4s/$/localhost	ansible_connection=local ansible_user=kolla ansible_become=true/' ~/all-in-one
-sed -i '19s/$/localhost       ansible_connection=local become=true/' ~/all-in-one
+sed -i '33s/$/ become=true/' ~/multinode
+sed -i '5,7d' ~/multinode
+sed -i '5ikolla[02:03] ansible_user=kolla ansible_become=true' ~/multinode
+sed -i '13,14d' ~/multinode
+sed -i '13ikolla4' ~/multinode
+sed -i '16d' ~/multinode
+sed -i '16ikolla01' ~/multinode
+sed -i '19d' ~/multinode
+sed -i '19icontrol' ~/multinode
+sed -i '27d' ~/multinode
+sed -i '27icontrol' ~/multinode
 # Ensure python docker module is imported
 python3 -c "import docker"
