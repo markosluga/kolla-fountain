@@ -24,7 +24,7 @@ sed -i '33s/$/ become=true/' ~/multinode
 sed -i '5,7d' ~/multinode
 sed -i '5ikolla[02:03] ansible_user=kolla ansible_become=true' ~/multinode
 sed -i '13,14d' ~/multinode
-sed -i '13ikolla4' ~/multinode
+sed -i '13ikolla[01:04]' ~/multinode
 sed -i '16d' ~/multinode
 sed -i '16ikolla01' ~/multinode
 sed -i '19d' ~/multinode
