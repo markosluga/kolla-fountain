@@ -34,7 +34,7 @@ Host prep just prepares the host with kolla as a sudoer with no password (since 
 `sudo pvcreate /dev/sdb
 sudo vgcreate cinder-volumes /dev/sdb`
 
-# Multi node
+# Single node
 
 ## kolla-shaker-single.sh
 
