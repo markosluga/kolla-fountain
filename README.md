@@ -1,8 +1,8 @@
 # The kolla-fountain v.1.0.7
 
-## An easy way to deploy a single host OpenStack with kolla.
+## An easy way to deploy OpenStack with kolla.
 
-* Install Ubuntu 20.04.3
+* Install Ubuntu 20.04.3 on one or more nodes.
 * Create a user called kolla - you can use the [user-kolla.sh](https://github.com/markosluga/kolla-fountain/blob/main/user-kolla.sh) script if you like. 
 * Log in as user kolla. Now you can also delete the default ubuntu user (for security) with the following command:
 
