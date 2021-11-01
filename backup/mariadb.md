@@ -22,11 +22,17 @@ Run the restore commands in the restore container:
 
 `
 cd /backup
+
 rm -rf /backup/restore
+
 mkdir -p /backup/restore/full
+
 gunzip mysqlbackup-01-11-2021-1635773719.qp.xbc.xbs.gz
+
 mbstream -x -C /backup/restore/full/ <  mysqlbackup-01-11-2021-1635773719.qp.xbc.xbs
+
 mariabackup --prepare --target-dir /backup/restore/full
+
 exit
 `
 Stop the restore container:
@@ -41,8 +47,11 @@ Restore mariadb to the new container:
 
 `
 rm -rf /var/lib/mysql/*
+
 rm -rf /var/lib/mysql/\.[^\.]*
+
 mariabackup --copy-back --target-dir /backup/restore/full
+
 exit
 `
 Now start mariadb:
