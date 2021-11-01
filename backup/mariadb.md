@@ -1,8 +1,8 @@
-#Backup mariadb and restore
+# Backup mariadb and restore
 
-##Backup
+## Backup
 
-###Enable backups via globals.yml:
+### Enable backups via globals.yml:
 
 `enable_mariabackup: "yes"`
 
@@ -10,9 +10,9 @@
 
 `kolla-ansible -i INVENTORY mariadb_backup`
 
-##Restore
+## Restore
 
-###Restoring a full backup
+### Restoring a full backup
 
 Create a restore container:
 
