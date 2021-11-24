@@ -4,7 +4,7 @@
 sudo apt update
 sudo apt install -y docker.io python3-dev libffi-dev gcc libssl-dev sudo python3-pip
 sudo pip3 install -U pip
-sudo pip3 install -U ansible==2.10.0
+sudo pip3 install -U ansible==2.10
 sudo apt install -y ansible
 sudo pip3 install -U docker
 sudo pip3 install -U kolla-ansible
