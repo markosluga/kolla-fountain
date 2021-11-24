@@ -1,11 +1,11 @@
 #!/bin/bash
 echo "Prepping host"
-source host-prep.sh
+source ~/kolla-fountain/host-prep.sh
 echo "Installing dependecies and configureing kolla"
-source kolla-shaker-multi.sh
+source ~/kolla-fountain/kolla-shaker-multi.sh
 echo "Configuring and deploying kolla-single host"
-source kolla-maker.sh
+source ~/kolla-fountain/kolla-maker.sh
 echo "Depoloying single host"
-source kolla-deploy-multi.sh
+source ~/kolla-fountain/kolla-deploy-multi.sh
 echo "Running post install"
-source kolla-post-install.sh
+source ~/kolla-fountain/kolla-post-install.sh
