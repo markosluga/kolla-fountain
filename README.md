@@ -69,7 +69,7 @@ Deploys all the packages required to run kolla ansible and configures ansible an
 1. Please edit ~/kolla-fountain/etc/kolla/globals.yml replacing the following with your values:
 
 openstack_release: "wallaby" # change this to your desired version!
-kolla_internal_vip_address: "172.20.208.200" # change this IP to your IP!
+kolla_internal_vip_address: "192.168.1.100" # change this IP to your IP!
 network_interface: "eth0" # change this to your mgmt adapter!
 api_interface: "{{ network_interface }}"
 tunnel_interface: "eth1" # change this to your private networks adapter!
@@ -107,10 +107,10 @@ kolla[02:03] # repalce with your monitoring nodes (usually controllers)
 [storage]
 kolla[01:04] # repalce with your cinder nodes
 
-4. Plase also edit ~/kolla-fountain/etc/kolla/globals.yml replacing the following with your values:
+4. Just like for the single nodes please also edit ~/kolla-fountain/etc/kolla/globals.yml replacing the following with your values:
 
 openstack_release: "wallaby" # change this to your desired version!
-kolla_internal_vip_address: "172.20.208.200" # change this IP to your IP!
+kolla_internal_vip_address: "192.168.1.100" # change this IP to your IP!
 network_interface: "eth0" # change this to your mgmt adapter!
 api_interface: "{{ network_interface }}"
 tunnel_interface: "eth1" # change this to your private networks adapter!
