@@ -1,5 +1,4 @@
 #!/bin/bash
-#sudo apt install -y openvswitch-switch python3-openstackclient
 sudo apt install -y python3-openstackclient
 kolla-ansible post-deploy
 # Export creds
