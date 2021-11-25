@@ -2,21 +2,21 @@
 # additional groups are for more control of the environment.
 [control]
 # These hostname must be resolvable from your deployment host
-kolla[02:03] ansible_user=kolla ansible_become=true
+kolla[02:03] ansible_user=kolla ansible_become=true # repalce with your controller nodes
 
 # The above can also be specified as follows:
-#control[01:03]     ansible_user=kolla
+#control[01:03]     ansible_user=kolla 
 
 # The network nodes are where your l3-agent and loadbalancers will run
-# This can be the same as a host in the control group
+# This can be the same as a host in the control group 
 [network]
-kolla[01:04]
+kolla[01:04] # repalce with your controller nodes
 
 [compute]
-kolla01
+kolla01 # repalce with your compute nodes
 
 [monitoring]
-kolla[02:03]
+kolla[02:03] # repalce with your monitoring nodes (usually controllers)
 
 # When compute nodes and control nodes use different interfaces,
 # you need to comment out "api_interface" and other interfaces from the globals.yml
@@ -24,7 +24,7 @@ kolla[02:03]
 #compute01 neutron_external_interface=eth0 api_interface=em1 storage_interface=em1 tunnel_interface=em1
 
 [storage]
-kolla[01:04]
+kolla[01:04] # repalce with your cinder nodes
 
 [deployment]
 localhost       ansible_connection=local become=true
