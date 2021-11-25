@@ -34,6 +34,7 @@ Host prep just prepares the host with kolla as a sudoer with no password (since 
 * Replace /dev/sdb with your cinder device(s) at line 6 and 7 in host-prep.sh
 
 `sudo pvcreate /dev/sdb`
+
 `sudo vgcreate cinder-volumes /dev/sdb`
 
 # Single node
@@ -47,11 +48,17 @@ Deploys all the packages required to run kolla ansible and configures ansible an
 ~/kolla-fountain/etc/kolla/globals.yml 
 
 `openstack_release: "wallaby" # change this to your desired version!`
+
 `kolla_internal_vip_address: "172.20.208.200" # change this IP to your IP!`
+
 `network_interface: "eth0" # change this to your mgmt adapter!`
+
 `api_interface: "{{ network_interface }}"`
+
 `tunnel_interface: "eth1" # change this to your private networks adapter!`
+
 `neutron_bridge_name: "br-ex,br-ex2" # change the number of external brisges to the number of external adapters`
+
 `neutron_external_interface: "eth2,eth3" # change this to your external adapters adapter!`
 
 Now you are ready to deploy with deploy-single.sh
@@ -69,18 +76,23 @@ Multiple host format is *host[startnumber,endnumber]* - kolla[02:03] represents 
 Replace the following:
 
 `[control]`
+
 `kolla[02:03] ansible_user=kolla ansible_become=true # repalce with your controller nodes`
  
 `[network]`
+
 `kolla[01:04] # repalce with your controller nodes`
 
 `[compute]`
+
 `kolla01 # repalce with your compute nodes`
 
 `[monitoring]`
+
 `kolla[02:03] # repalce with your monitoring nodes (usually controllers)`
 
 `[storage]`
+
 `kolla[01:04] # repalce with your cinder nodes`
 
 4. Plase edit the following files with your values:
@@ -88,11 +100,17 @@ Replace the following:
 ~/kolla-fountain/etc/kolla/globals.yml 
 
 `openstack_release: "wallaby" # change this to your desired version!`
+
 `kolla_internal_vip_address: "172.20.208.200" # change this IP to your IP!`
+
 `network_interface: "eth0" # change this to your mgmt adapter!`
+
 `api_interface: "{{ network_interface }}"`
+
 `tunnel_interface: "eth1" # change this to your private networks adapter!`
+
 `neutron_bridge_name: "br-ex,br-ex2" # change the number of external brisges to the number of external adapters`
+
 `neutron_external_interface: "eth2,eth3" # change this to your external adapters adapter!`
 
 Now you are ready to deploy with deploy-multi.sh
