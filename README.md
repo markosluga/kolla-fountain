@@ -44,7 +44,10 @@ Deploys all the packages required to run kolla ansible and configures ansible an
 
 # Multi node
 
-## kolla-shaker-multi.sh
+1. Create your .ssh with private and public key, authorized hosts and known hosts. This should be copied to all nodes.
+2. Deploy host-prep.sh on all nodes to enable passwordless sudo, create the cinder-volumes vg and add the .ssh files to kolla home.
+
+## 3. kolla-shaker-multi.sh
 
 Deploys the packages on multiple nodes. Removes the default entries in the multinode kolla ansible file and replaces them with the hostnames for the deployment. 
 
