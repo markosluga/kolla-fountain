@@ -37,6 +37,24 @@ Host prep just prepares the host with kolla as a sudoer with no password (since 
 
 `sudo vgcreate cinder-volumes /dev/sdb`
 
+## kolla-post-install.sh
+
+1. Installs openstack client
+2. Runs the pos-install kolla task.
+3. Exports authentication
+4. Crerates a Cirros image
+5. Creates a 1CPU-1GB RAM flavor
+6. Creates the provider networks and subnets
+7. Creates a private network and subnet
+8. Creates a neutron router and connects it to the networks.
+9. Displays the login password for the admin user
+
+* Feel free to change these networks to match your subnet ranges
+
+## deploy-single.sh and deploy-multi.sh
+
+Once you have edited the files above you can run the single or multi-node deployment script on the node of your choice.
+
 # Single node
 
 ## kolla-shaker-single.sh
@@ -113,25 +131,9 @@ Replace the following:
 
 `neutron_external_interface: "eth2,eth3" # change this to your external adapters adapter!`
 
+Run multi-host-prep.sh on all nodes but the one you are deploying from.
+
 Now you are ready to deploy with deploy-multi.sh
-
-## kolla-post-install.sh
-
-1. Installs openstack client
-2. Runs the pos-install kolla task.
-3. Exports authentication
-4. Crerates a Cirros image
-5. Creates a 1CPU-1GB RAM flavor
-6. Creates the provider networks and subnets
-7. Creates a private network and subnet
-8. Creates a neutron router and connects it to the networks.
-9. Displays the login password for the admin user
-
-* Feel free to change these networks to match your subnet ranges
-
-## deploy-single.sh and deploy-multi.sh
-
-Once you have edited the files above you can run the single or multi-node deployment script on the node of your choice.
 
 (c) marko@markocloud.com
 
