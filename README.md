@@ -51,6 +51,11 @@ Host prep just prepares the host with kolla as a sudoer with no password (since 
 
 * You need to *change the default networks* to match your subnet ranges
 
+For example 192.168.79.x needs to be changed to your external network here:
+
+openstack network create  --share --external --provider-physical-network physnet1 --provider-network-type flat provider1
+openstack subnet create --network provider1 --gateway 192.168.79.1 --subnet-range 192.168.79.1/24  subnet1 --allocation-pool start=192.168.79.101,end=192.168.79.150
+
 ## deploy-single.sh and deploy-multi.sh
 
 Once you have edited the files above you can run the single or multi-node deployment script on the node of your choice.
@@ -61,9 +66,7 @@ Once you have edited the files above you can run the single or multi-node deploy
 
 Deploys all the packages required to run kolla ansible and configures ansible and an all-in-one kolla deployment. Unless you are changing versions of kolla/ansible/python no changes are needed. **This deployment does not use a python virtual environment!**
 
-1. Please edit the following files with your values:
-
-~/kolla-fountain/etc/kolla/globals.yml 
+1. Please edit ~/kolla-fountain/etc/kolla/globals.yml replacing the following with your values:
 
 openstack_release: "wallaby" # change this to your desired version!
 kolla_internal_vip_address: "172.20.208.200" # change this IP to your IP!
@@ -77,10 +80,12 @@ Now you are ready to deploy with deploy-single.sh
 
 # Multi node
 
-Deploys the packages on multiple nodes. Removes the default entries in the multinode kolla ansible file and replaces them with the hostnames for the deployment. 
+## kolla-shaker-multi.sh
 
-1. Create your .ssh with private and public key, authorized hosts and known hosts. This should be copied to all nodes.
-2. Deploy host-prep.sh on all nodes to enable passwordless sudo, create the cinder-volumes vg and add the .ssh files to kolla home.
+Deploys the packages on multiple nodes. Replaces the multinode kolla ansible file with the one in ~/kolla-fountain/home/kolla/multinode and copies the ssh data to kolla home .ssh.
+
+1. Create your .ssh files: **private and public key, authorized hosts and known hosts**. This need to be deployed to all nodes. 
+2. You can use multi-host-prep.sh to deploy to other nodes (not the deployment one).It will also enable passwordless sudo, create the cinder-volumes vg and add the .ssh files to kolla home.
 3. Edit ~/kolla-fountain/home/kolla/multinode
 
 Multiple host format is *host[startnumber,endnumber]* - kolla[02:03] represents hosts kolla02 and kolla03
@@ -102,9 +107,7 @@ kolla[02:03] # repalce with your monitoring nodes (usually controllers)
 [storage]
 kolla[01:04] # repalce with your cinder nodes
 
-4. Plase edit the following files with your values:
-
-~/kolla-fountain/etc/kolla/globals.yml 
+4. Plase also edit ~/kolla-fountain/etc/kolla/globals.yml replacing the following with your values:
 
 openstack_release: "wallaby" # change this to your desired version!
 kolla_internal_vip_address: "172.20.208.200" # change this IP to your IP!
