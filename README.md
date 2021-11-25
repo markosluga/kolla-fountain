@@ -49,7 +49,7 @@ Host prep just prepares the host with kolla as a sudoer with no password (since 
 8. Creates a neutron router and connects it to the networks.
 9. Displays the login password for the admin user
 
-* Feel free to change these networks to match your subnet ranges
+* You need to *change the default networks* to match your subnet ranges
 
 ## deploy-single.sh and deploy-multi.sh
 
