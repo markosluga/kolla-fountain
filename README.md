@@ -42,53 +42,64 @@ sudo vgcreate cinder-volumes /dev/sdb`
 
 Deploys all the packages required to run kolla ansible and configures ansible and an all-in-one kolla deployment. Unless you are changing versions of kolla/ansible/python no changes are needed. **This deployment does not use a python virtual environment!**
 
+1. Please edit the following files with your values:
+
+~/kolla-fountain/etc/kolla/globals.yml 
+
+openstack_release: "wallaby" # change this to your desired version!
+kolla_internal_vip_address: "172.20.208.200" # change this IP to your IP!
+network_interface: "eth0" # change this to your mgmt adapter!
+api_interface: "{{ network_interface }}"
+tunnel_interface: "eth1" # change this to your private networks adapter!
+neutron_bridge_name: "br-ex,br-ex2" # change the number of external brisges to the number of external adapters
+neutron_external_interface: "eth2,eth3" # change this to your external adapters adapter!
+
+Now you are ready to deploy with deploy-single.sh
+
 # Multi node
+
+Deploys the packages on multiple nodes. Removes the default entries in the multinode kolla ansible file and replaces them with the hostnames for the deployment. 
 
 1. Create your .ssh with private and public key, authorized hosts and known hosts. This should be copied to all nodes.
 2. Deploy host-prep.sh on all nodes to enable passwordless sudo, create the cinder-volumes vg and add the .ssh files to kolla home.
-
-## 3. kolla-shaker-multi.sh
-
-Deploys the packages on multiple nodes. Removes the default entries in the multinode kolla ansible file and replaces them with the hostnames for the deployment. 
+3. Edit ~/kolla-fountain/home/kolla/multinode
 
 Multiple host format is *host[startnumber,endnumber]* - kolla[02:03] represents hosts kolla02 and kolla03
 
 Replace the following:
 
-Line 25: Replace kolla[02:03] with the hostname or hostnames of your controller node(s): 
+[control]
+kolla[02:03] ansible_user=kolla ansible_become=true # repalce with your controller nodes
+ 
+[network]
+kolla[01:04] # repalce with your controller nodes
 
-Line 27: Replace kolla04 with the hostname or hostnames of your network node(s)
+[compute]
+kolla01 # repalce with your compute nodes
 
-Line 29: Replace kolla01 with the hostname or hostnames of your compute node(s)
+[monitoring]
+kolla[02:03] # repalce with your monitoring nodes (usually controllers)
 
-Line 31: Replace kolla[02:03] with the hostname or hostnames of your montioring node(s)
+[storage]
+kolla[01:04] # repalce with your cinder nodes
 
-Line 33: Replace kolla[01:04] with the hostname or hostnames of your montioring node(s)
+4. Plase edit the following files with your values:
 
-## kolla-maker.sh
+~/kolla-fountain/etc/kolla/globals.yml 
 
-1. Configures globals.yml with the settings needed to get off the ground quickly. See the references that it deploys into globals.yml here: https://github.com/markosluga/kolla-fountain/blob/main/etc/kolla/globals.yml
-2. Configures neutron ml2_conf.ini with the mappings of the adapters to the OpenVswitc. See the references that it deploys into ml2_conf.ini here:  https://github.com/markosluga/kolla-fountain/blob/main/etc/kolla/neutron/ml2_conf.ini
+openstack_release: "wallaby" # change this to your desired version!
+kolla_internal_vip_address: "172.20.208.200" # change this IP to your IP!
+network_interface: "eth0" # change this to your mgmt adapter!
+api_interface: "{{ network_interface }}"
+tunnel_interface: "eth1" # change this to your private networks adapter!
+neutron_bridge_name: "br-ex,br-ex2" # change the number of external brisges to the number of external adapters
+neutron_external_interface: "eth2,eth3" # change this to your external adapters adapter!
 
-* Change the IP address to an availabe address on your adapter at line 8 in kolla-shaker.sh
-
-`sudo sed -i "31i kolla_internal_vip_address: \"YOUR-IP-GOES-HERE\" " /etc/kolla/globals.yml`
-
-* Change eth0 to your management adapter at line 9 in kolla-shaker.sh
-
-`sudo sed -i "32i network_interface: \"YOUR-DEVICE1-GOES-HERE\" " /etc/kolla/globals.yml`
-
-* Change eth1 to your tunnel adapter at line 11 in kolla-shaker.sh
-
-`sudo sed -i "34i tunnel_interface: \"YOUR-DEVICE2-GOES-HERE\" " /etc/kolla/globals.yml`
-
-* Change the neutron_external adapters to your physical devices at line 13 in kolla-shaker.sh
-
-`sudo sed -i "36i neutron_external_interface: \"YOUR-DEVICE3-GOES-HERE,YOUR-DEVICE4-GOES-HERE\" " /etc/kolla/globals.yml`
+Now you are ready to deploy with deploy-multi.sh
 
 ## kolla-post-install.sh
 
-1. Installs openstack client and ovs-vsctl
+1. Installs openstack client
 2. Runs the pos-install kolla task.
 3. Exports authentication
 4. Crerates a Cirros image
@@ -99,10 +110,6 @@ Line 33: Replace kolla[01:04] with the hostname or hostnames of your montioring 
 9. Displays the login password for the admin user
 
 * Feel free to change these networks to match your subnet ranges
-
-## nodes-multi.sh
-
-Required to run on the nodes (not the deployment one) in a multinode scenario.
 
 ## deploy-single.sh and deploy-multi.sh
 
