@@ -25,7 +25,7 @@ sudo mkdir /etc/kolla/config/
 sudo mkdir /etc/kolla/config/neutron
 sudo chown $USER:$USER /etc/kolla/config
 sudo chown $USER:$USER /etc/kolla/config/neutron/
-cp ~/kolla-fountain/etc/kolla/neutron/ml2_conf.ini /etc/kolla/config/neutron/ml2_conf.ini
+cp ~/kolla-fountain/etc/kolla/config/neutron/ml2_conf.ini /etc/kolla/config/neutron/ml2_conf.ini
 
 # Set up ansible for kolla
 sudo cp ~/kolla-fountain/etc/ansible/ansible.cfg /etc/ansible/ansible.cfg
