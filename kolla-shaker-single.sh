@@ -15,7 +15,7 @@ cp -r /usr/local/share/kolla-ansible/etc_examples/kolla/* /etc/kolla
 
 #copy the globals.yml file from the sample in the home directory
 cp ~/kolla-fountain/etc/kolla/globals.yml /etc/kolla/globals.yml
-cp /usr/local/share/kolla-ansible/ansible/inventory/* ~
+#cp /usr/local/share/kolla-ansible/ansible/inventory/* ~
 
 #generate passwords
 kolla-genpwd
