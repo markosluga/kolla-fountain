@@ -10,9 +10,9 @@ openstack image create Cirros --file ~/cirros-0.5.2-x86_64-disk.img --disk-forma
 openstack flavor create --public type.1C_1G --id auto --ram 1024 --disk 1 --vcpus 1
 #Create provider networks
 openstack network create  --share --external --provider-physical-network physnet1 --provider-network-type flat provider1
-openstack subnet create --network provider1 --gateway 192.168.79.1 --subnet-range 192.168.79.1/24  subnet1 --allocation-pool start=192.168.79.101,end=192.168.79.150
+openstack subnet create --network provider1 --gateway 192.168.79.1 --subnet-range 192.168.79.0/24  subnet1 --allocation-pool start=192.168.79.101,end=192.168.79.150
 openstack network create  --share --external --provider-physical-network physnet2 --provider-network-type flat provider2
-openstack subnet create --network provider2 --gateway 192.168.80.1 --subnet-range 192.168.80.1/24  subnet2 --allocation-pool start=192.168.80.101,end=192.168.80.150
+openstack subnet create --network provider2 --gateway 192.168.80.1 --subnet-range 192.168.80.0/24  subnet2 --allocation-pool start=192.168.80.101,end=192.168.80.150
 # Create private network
 openstack network create private
 openstack subnet create privsubnet --network private --subnet-range 192.168.123.0/24
