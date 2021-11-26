@@ -28,7 +28,7 @@ config_strategy: "COPY_ALWAYS"
 kolla_base_distro: "ubuntu"
 kolla_install_type: "binary"
 openstack_release: "wallaby" # change this to your desired version!
-kolla_internal_vip_address: "192.168.1.100" # change this IP to your IP!
+kolla_internal_vip_address: "192.168.1.100" # change this IP to an unused IP in your managemnt network - must be different from your host IP!
 network_interface: "eth0" # change this to your mgmt adapter!
 api_interface: "{{ network_interface }}"
 tunnel_interface: "eth1" # change this to your private networks adapter!
