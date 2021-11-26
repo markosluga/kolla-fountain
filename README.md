@@ -3,7 +3,8 @@
 ## An easy way to deploy OpenStack with kolla.
 
 * Install Ubuntu 20.04.3 on one or more nodes.
-* Create a user called kolla - you can use the [user-kolla.sh](https://github.com/markosluga/kolla-fountain/blob/main/user-kolla.sh) script if you like. 
+* Create a user called kolla - you can use the [user-kolla.sh](https://github.com/markosluga/kolla-fountain/blob/main/user-kolla.sh) script if you like. If you are going to use any other user other than kolla please change line 4 in [all-in-one](https://github.com/markosluga/kolla-fountain/blob/main/home/kolla/all-in-one) and swap 
+`ansible_user=kolla` with your username
 * Log in as user kolla. Now you can also delete the default ubuntu user (for security) with the following command:
 
 `sudo deluser --remove-home ubuntu`
@@ -27,7 +28,7 @@ In later iterrations I enabled a small DHCP on the tunnel and provider networks 
 
 # Getting startred:
 
-## host-prep.sh
+## [host-prep.sh](https://github.com/markosluga/kolla-fountain/blob/main/host-prep.sh)
 
 Host prep just prepares the host with kolla as a sudoer with no password (since the scripts are doing a lot of sudo) and then adds the pv and vg for cinder
 
@@ -37,7 +38,7 @@ Host prep just prepares the host with kolla as a sudoer with no password (since 
 
 `sudo vgcreate cinder-volumes /dev/sdb`
 
-## kolla-post-install.sh
+## [kolla-post-install.sh](https://github.com/markosluga/kolla-fountain/blob/main/kolla-post-install.sh)
 
 1. Installs openstack client
 2. Runs the pos-install kolla task.
@@ -56,13 +57,13 @@ For example 192.168.79.x needs to be changed to your external network here:
 openstack network create  --share --external --provider-physical-network physnet1 --provider-network-type flat provider1
 openstack subnet create --network provider1 --gateway 192.168.79.1 --subnet-range 192.168.79.1/24  subnet1 --allocation-pool start=192.168.79.101,end=192.168.79.150
 
-## deploy-single.sh and deploy-multi.sh
+## [deploy-single.sh](https://github.com/markosluga/kolla-fountain/blob/main/deploy-single.sh) and [deploy-multi.sh](https://github.com/markosluga/kolla-fountain/blob/main/deploy-multi.sh)
 
 Once you have edited the files above you can run the single or multi-node deployment script on the node of your choice.
 
 # Single node
 
-## kolla-shaker-single.sh
+## [kolla-shaker-single.sh](https://github.com/markosluga/kolla-fountain/blob/main/kolla-shaker-single.sh)
 
 Deploys all the packages required to run kolla ansible and configures ansible and an all-in-one kolla deployment. Unless you are changing versions of kolla/ansible/python no changes are needed. **This deployment does not use a python virtual environment!**
 
@@ -76,16 +77,16 @@ tunnel_interface: "eth1" # change this to your private networks adapter!
 neutron_bridge_name: "br-ex,br-ex2" # change the number of external brisges to the number of external adapters
 neutron_external_interface: "eth2,eth3" # change this to your external adapters adapter!
 
-Now you are ready to deploy with deploy-single.sh
+Now you are ready to deploy with [deploy-single.sh](https://github.com/markosluga/kolla-fountain/blob/main/deploy-multi.sh)
 
 # Multi node
 
-## kolla-shaker-multi.sh
+## [kolla-shaker-multi.sh](https://github.com/markosluga/kolla-fountain/blob/main/kolla-shaker-multi.sh)
 
 Deploys the packages on multiple nodes. Replaces the multinode kolla ansible file with the one in ~/kolla-fountain/home/kolla/multinode and copies the ssh data to kolla home .ssh.
 
 1. Create your .ssh files: **private and public key, authorized hosts and known hosts**. This need to be deployed to all nodes. 
-2. You can use multi-host-prep.sh to deploy to other nodes (not the deployment one).It will also enable passwordless sudo, create the cinder-volumes vg and add the .ssh files to kolla home.
+2. You can use [multi-host-prep.sh](https://github.com/markosluga/kolla-fountain/blob/main/multi-host-prep.sh) to deploy to other nodes (not the deployment one).It will also enable passwordless sudo, create the cinder-volumes vg and add the .ssh files to kolla home.
 3. Edit ~/kolla-fountain/home/kolla/multinode
 
 Multiple host format is *host[startnumber,endnumber]* - kolla[02:03] represents hosts kolla02 and kolla03
@@ -117,9 +118,9 @@ tunnel_interface: "eth1" # change this to your private networks adapter!
 neutron_bridge_name: "br-ex,br-ex2" # change the number of external brisges to the number of external adapters
 neutron_external_interface: "eth2,eth3" # change this to your external adapters adapter!
 
-Run multi-host-prep.sh on all nodes but the one you are deploying from.
+Run [multi-host-prep.sh](https://github.com/markosluga/kolla-fountain/blob/main/multi-host-prep.sh) on all nodes but the one you are deploying from.
 
-Now you are ready to deploy with deploy-multi.sh
+Now you are ready to deploy with [deploy-multi.sh](https://github.com/markosluga/kolla-fountain/blob/main/deploy-multi.sh)
 
 (c) marko@markocloud.com
 
