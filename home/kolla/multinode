@@ -13,7 +13,7 @@ kolla[04:05] ansible_user=kolla ansible_become=true # repalce with your controll
 kolla[02:03] # repalce with your network nodes
 
 [compute]
-kolla[07:08] # repalce with your compute nodes
+kolla[06:08] # repalce with your compute nodes 
 
 [monitoring]
 kolla[04:05] # repalce with your monitoring nodes (usually controllers)
