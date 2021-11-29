@@ -108,7 +108,9 @@ kolla[02:03] # repalce with your monitoring nodes (usually controllers)
 [storage]
 kolla[01:04] # repalce with your cinder nodes
 
-4. Just like for the single nodes please also edit ~/kolla-fountain/etc/kolla/globals.yml replacing the following with your values:
+4. Run [cinder-node-prep.sh](https://github.com/markosluga/kolla-fountain/blob/main/cinder-node-prep.sh) on your storage nodes.
+
+5. Just like for the single nodes please also edit ~/kolla-fountain/etc/kolla/globals.yml replacing the following with your values:
 
 openstack_release: "wallaby" # change this to your desired version!
 kolla_internal_vip_address: "192.168.1.100" # change this IP to your IP!
@@ -118,9 +120,9 @@ tunnel_interface: "eth1" # change this to your private networks adapter!
 neutron_bridge_name: "br-ex,br-ex2" # change the number of external brisges to the number of external adapters
 neutron_external_interface: "eth2,eth3" # change this to your external adapters adapter!
 
-Run [multi-host-prep.sh](https://github.com/markosluga/kolla-fountain/blob/main/multi-host-prep.sh) on all nodes but the one you are deploying from.
+Run [multi-host-prep.sh](https://github.com/markosluga/kolla-fountain/blob/main/multi-host-prep.sh) on **all** nodes beofre you run the multinode deployment.
 
-Now you are ready to deploy with [deploy-multi.sh](https://github.com/markosluga/kolla-fountain/blob/main/deploy-multi.sh)
+Now you are ready to deploy with [deploy-multi.sh](https://github.com/markosluga/kolla-fountain/blob/main/deploy-multi.sh) on any of the nodes that you are working on.
 
 (c) marko@markocloud.com
 
