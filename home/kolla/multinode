@@ -24,7 +24,7 @@ kolla[05:06] # repalce with your monitoring nodes (usually controllers)
 #compute01 neutron_external_interface=eth0 api_interface=em1 storage_interface=em1 tunnel_interface=em1
 
 [storage]
-kolla[09:10] # repalce with your cinder nodes
+kolla[07:08] # repalce with your cinder nodes
 
 [deployment]
 localhost       ansible_connection=local become=true
