@@ -24,8 +24,3 @@ sudo cp ~/kolla-fountain/etc/ansible/ansible.cfg /etc/ansible/ansible.cfg
 
 # Set up kolla all-in-one 
 cp ~/kolla-fountain/home/kolla/multinode ~/multinode
-
-# Copy ssh files over from ~/kolla-fountain/home/kolla/.ssh
-cp ~/kolla-fountain/home/kolla/.ssh/* ~/.ssh
-chmod 600 ~/.ssh/authorized_keys
-chmod 400 ~/.ssh/id_rsa
