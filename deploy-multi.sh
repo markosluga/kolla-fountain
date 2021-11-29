@@ -1,6 +1,4 @@
 #!/bin/bash
-echo "Prepping host"
-source ~/kolla-fountain/host-prep.sh
 echo "Installing dependecies and configureing kolla"
 source ~/kolla-fountain/kolla-shaker-multi.sh
 echo "Depoloying multi host"
