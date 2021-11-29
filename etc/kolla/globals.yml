@@ -45,9 +45,9 @@ enable_nova: "{{ enable_openstack_core | bool }}"
 nova_compute_virt_type:  "qemu"
 enable_neutron_provider_networks: "yes"
 enable_neutron_port_forwarding: "yes"
-enable_neutron_dvr: "yes"
 enable_openvswitch: "yes"
-enable_mariabackup: "yes"
+#enable_neutron_dvr: "yes"
+#enable_mariabackup: "yes"
 
 
 # Valid options are [ COPY_ONCE, COPY_ALWAYS ]
