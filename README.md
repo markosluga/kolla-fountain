@@ -13,14 +13,14 @@
 
 I am using 4 adapters, but you might want to go with just one provider network or even merge the private and managment into one.
 
-* eth0 – management network – this is my local network and allows me to reach the internet during install. DHCP
-* eth1 – tunnel network – this represents the “host only” type of network where the VM private networks will get created on VxLANs. STATIC
-* eth2 – provider network #1 STATIC
-* eth3 – provider network #2 STATIC
+* eth0 – management network - where the APIs communicate on and where kolla_internal_vip_address will be.
+* eth1 – tunnel network – this represents the network where the VM private networks will get created on VxLANs.
+* eth2 – provider network - this is an external (public) network
+* eth3 – provider network - this is another external (public) network
 
 Change eth0-3 to your device names.
 
-* Note that the provider adapters are **supposed to be unconfigured**, but for me traffic didn't flow unless I put a static IP on the provider network, so I just configured them with am available IP in the provider range to ensure they were up before I ran the scripts. See [example netplan](https://github.com/markosluga/kolla-fountain/blob/main/etc/netplan/00-installer-config.yaml) as reference. If you happen to have DHCP on the tunnel and provider networks just use DHCP it works the same. An example of that netplan with DHCP is [here](https://github.com/markosluga/kolla-fountain/blob/main/etc/netplan/01-installer-config.yaml).
+* Note that the provider adapters are **supposed to be unconfigured**, but unfortunately the deployment can fail if there are no IPs present on the adapters. I configured them with static IPs - see [example netplan](https://github.com/markosluga/kolla-fountain/blob/main/etc/netplan/00-installer-config.yaml) as reference. If you happen to have DHCP on all your networks you can use DHCP to bring your adapters up it works the same. An example of that netplan with DHCP is [here](https://github.com/markosluga/kolla-fountain/blob/main/etc/netplan/01-installer-config.yaml). Just make sure the devices have an IPv4 network.
 
 # Getting startred:
 
