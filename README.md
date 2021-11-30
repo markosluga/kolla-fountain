@@ -67,7 +67,7 @@ Once you have edited the files above you can run the single or multi-node deploy
 
 Deploys all the packages required to run kolla ansible and configures ansible and an all-in-one kolla deployment. Unless you are changing versions of kolla/ansible/python no changes are needed. **This deployment does not use a python virtual environment!**
 
-1. Please edit ~/kolla-fountain/etc/kolla/globals.yml replacing the following with your values:
+1. Please edit [~/kolla-fountain/etc/kolla/globals.yml](https://github.com/markosluga/kolla-fountain/blob/mainetc/kolla/globals.yml) replacing the following with your values:
 
 openstack_release: "wallaby" # change this to your desired version!
 kolla_internal_vip_address: "192.168.1.100" # change this IP to your IP!
@@ -112,7 +112,7 @@ kolla[05:06] # repalce with your monitoring nodes (usually controllers)
 [storage]
 kolla[07:08] # repalce with your cinder (storage) nodes
 
-5. Just like for the single nodes please also edit ~/kolla-fountain/etc/kolla/globals.yml replacing the following with your values:
+5. Just like for the single nodes please also edit [~/kolla-fountain/etc/kolla/globals.yml](https://github.com/markosluga/kolla-fountain/blob/mainetc/kolla/globals.yml) replacing the following with your values:
 
 openstack_release: "wallaby" # change this to your desired version!
 kolla_internal_vip_address: "192.168.1.100" # change this IP to an unused IP of your management network NOT the host IP!
