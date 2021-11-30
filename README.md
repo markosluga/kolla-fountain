@@ -30,9 +30,9 @@ Change eth0-3 to your device names.
 3. Exports authentication
 4. Crerates a Cirros image
 5. Creates a 1CPU-1GB RAM flavor
-6. Creates the provider networks and subnets
-7. Creates a private network and subnet
-8. Creates a neutron router and connects it to the networks.
+6. Creates two provider networks and subnets
+7. Creates two private networks and subnets
+8. Creates a neutron router and connects it to all networks. Multi creates a HA distributed virtual router.
 9. Displays the login password for the admin user
 
 * You need to *change the default networks* to match your subnet ranges
