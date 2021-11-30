@@ -1,4 +1,4 @@
-# The kolla-fountain v.1.0.7
+# The kolla-fountain v.1.2.1
 
 ## An easy way to deploy OpenStack with kolla.
 
@@ -94,19 +94,19 @@ Multiple host format is *host[startnumber,endnumber]* - kolla[02:03] represents 
 Replace the following:
 
 [control]
-kolla[02:03] ansible_user=kolla ansible_become=true # repalce with your controller nodes
+kolla[05:06] ansible_user=kolla ansible_become=true # repalce with your controller nodes
  
 [network]
-kolla[01:04] # repalce with your controller nodes
+kolla[02:03] # repalce with your controller nodes
 
 [compute]
-kolla01 # repalce with your compute nodes
+kolla[07:08] # repalce with your compute nodes
 
 [monitoring]
-kolla[02:03] # repalce with your monitoring nodes (usually controllers)
+kolla[05:06] # repalce with your monitoring nodes (usually controllers)
 
 [storage]
-kolla[01:04] # repalce with your cinder nodes
+kolla[07:08] # repalce with your cinder nodes
 
 4. Run [cinder-node-prep.sh](https://github.com/markosluga/kolla-fountain/blob/main/cinder-node-prep.sh) on your storage nodes.
 
