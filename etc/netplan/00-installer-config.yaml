@@ -1,14 +1,22 @@
 network:
   ethernets:
     eth0:
-      dhcp4: true
+      eth0:
+      addresses:
+      - 192.168.1.150/24
+      gateway4: 192.168.1.1
+      nameservers:
+        addresses:
+        - 192.168.1.1
+        search:
+        - lan
     eth1:
       addresses:
-      - 192.168.99.100/24
+      - 192.168.78.100/24
     eth2:
       addresses:
-      - 192.168.1.200/24
+      - 192.168.79.200/24
     eth3:
       addresses:
-      - 192.168.77.200/24
+      - 192.168.80.200/24
   version: 2
