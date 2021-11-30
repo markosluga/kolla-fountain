@@ -23,7 +23,7 @@ Change eth0-3 to your device names.
 
 # Getting startred:
 
-## [kolla-post-install.sh](https://github.com/markosluga/kolla-fountain/blob/main/kolla-post-install.sh)
+## [kolla-post-install.sh](https://github.com/markosluga/kolla-fountain/blob/main/kolla-post-install.sh) and [kolla-post-multi.sh](https://github.com/markosluga/kolla-fountain/blob/main/kolla-post-multi.sh) (for multinode)
 
 1. Installs openstack client
 2. Runs the pos-install kolla task.
