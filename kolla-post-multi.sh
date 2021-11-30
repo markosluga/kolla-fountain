@@ -23,5 +23,6 @@ openstack router create ha-router1 --distributed --ha
 openstack router set ha-router1 --external-gateway provider1
 openstack router add subnet ha-router1 privsubnet1
 openstack router add subnet ha-router1 privsubnet2
+openstack security group rule create --protocol icmp default
 # Display password
 echo "Log in as \"admin\" with the following password: `sudo grep -Po '(?<=^export OS_PASSWORD=)\w*$' /etc/kolla/admin-openrc.sh` "
