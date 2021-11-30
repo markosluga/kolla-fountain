@@ -65,11 +65,17 @@ Deploys all the packages required to run kolla ansible and configures ansible an
 1. Please edit [~/kolla-fountain/etc/kolla/globals.yml](https://github.com/markosluga/kolla-fountain/blob/mainetc/kolla/globals.yml) replacing the following with your values:
 
 openstack_release: "wallaby" # change this to your desired version!
+
 kolla_internal_vip_address: "192.168.1.100" # change this IP to your IP!
+
 network_interface: "eth0" # change this to your mgmt adapter!
+
 api_interface: "{{ network_interface }}"
+
 tunnel_interface: "eth1" # change this to your private networks adapter!
+
 neutron_bridge_name: "br-ex,br-ex2" # change the number of external brisges to the number of external adapters
+
 neutron_external_interface: "eth2,eth3" # change this to your external adapters adapter!
 
 Now you are ready to deploy with [deploy-single.sh](https://github.com/markosluga/kolla-fountain/blob/main/deploy-multi.sh)
