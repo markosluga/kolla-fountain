@@ -20,11 +20,7 @@ I am using 4 adapters, but you might want to go with just one provider network o
 
 Change eth0-3 to your device names.
 
-* Note that the provider adapters are **supposed to be unconfigured**, but for me traffic didn't flow unless I put a static IP on the provider network, so I just configured them with am available IP in the provider range to ensure they were up before I ran the scripts.
-
-See [example netplan](https://github.com/markosluga/kolla-fountain/blob/main/etc/netplan/00-installer-config.yaml) as reference.
-
-In later iterrations I enabled a small DHCP on the tunnel and provider networks just to bring the adapters up and it works the same. An example of that netplan is [here](https://github.com/markosluga/kolla-fountain/blob/main/etc/netplan/01-installer-config.yaml). As you can see I also opted for a static IP for eth0 since I hardcoded my devices with a new domain .lan and set up a small DNS on my router.
+* Note that the provider adapters are **supposed to be unconfigured**, but for me traffic didn't flow unless I put a static IP on the provider network, so I just configured them with am available IP in the provider range to ensure they were up before I ran the scripts. See [example netplan](https://github.com/markosluga/kolla-fountain/blob/main/etc/netplan/00-installer-config.yaml) as reference. If you happen to have DHCP on the tunnel and provider networks just use DHCP it works the same. An example of that netplan with DHCP is [here](https://github.com/markosluga/kolla-fountain/blob/main/etc/netplan/01-installer-config.yaml).
 
 # Getting startred:
 
