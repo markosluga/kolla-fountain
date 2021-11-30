@@ -13,7 +13,7 @@
 
 I am using 4 adapters, but you might want to go with just one provider network or even merge the private and managment into one.
 
-* eth0 – management network - where the APIs communicate on and where kolla_internal_vip_address will be.
+* eth0 – management network - where the APIs communicate on and where `kolla_internal_vip_address` will be.
 * eth1 – tunnel network – this represents the network where the VM private networks will get created on VxLANs.
 * eth2 – provider network - this is an external (public) network
 * eth3 – provider network - this is another external (public) network
