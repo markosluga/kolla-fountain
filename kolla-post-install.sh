@@ -14,11 +14,14 @@ openstack subnet create --network provider1 --gateway 192.168.79.1 --subnet-rang
 openstack network create  --share --external --provider-physical-network physnet2 --provider-network-type flat provider2
 openstack subnet create --network provider2 --gateway 192.168.80.1 --subnet-range 192.168.80.0/24  subnet2 --allocation-pool start=192.168.80.101,end=192.168.80.150
 # Create private network
-openstack network create private
-openstack subnet create privsubnet --network private --subnet-range 192.168.123.0/24
+openstack network create private1
+openstack subnet create privsubnet1 --network private1 --subnet-range 192.168.123.0/24
+openstack network create private2
+openstack subnet create privsubnet2 --network private2 --subnet-range 192.168.124.0/24
 # Create router
-openstack router create router1 
-openstack router set router1 --external-gateway provider1
-openstack router add subnet router1 privsubnet
+openstack router create ha-router1 --distributed --ha
+openstack router set ha-router1 --external-gateway provider1
+openstack router add subnet ha-router1 privsubnet1
+openstack router add subnet ha-router1 privsubnet2
 # Display password
 echo "Log in as \"admin\" with the following password: `sudo grep -Po '(?<=^export OS_PASSWORD=)\w*$' /etc/kolla/admin-openrc.sh` "
