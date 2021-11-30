@@ -126,10 +126,15 @@ kolla[07:08] # repalce with your cinder (storage) nodes
 5. Just like for the single nodes please also edit [~/kolla-fountain/etc/kolla/globals.yml](https://github.com/markosluga/kolla-fountain/blob/mainetc/kolla/globals.yml) replacing the following with your values:
 
 openstack_release: "wallaby" # change this to your desired version!
+
 kolla_internal_vip_address: "192.168.1.100" # change this IP to an unused IP of your management network NOT the host IP!
+
 network_interface: "eth0" # change this to your management network adapter!
+
 tunnel_interface: "eth1" # change this to your private networks adapter!
+
 neutron_bridge_name: "br-ex,br-ex2" # change the number of external brisges to the number of external adapters
+
 neutron_external_interface: "eth2,eth3" # change this to your external adapters adapter!
 
 6. Now you are ready to deploy with [deploy-multi.sh](https://github.com/markosluga/kolla-fountain/blob/main/deploy-multi.sh) on any of the nodes that you are working on.
