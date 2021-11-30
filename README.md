@@ -83,7 +83,9 @@ Now you are ready to deploy with [deploy-single.sh](https://github.com/markoslug
 
 ## [kolla-shaker-multi.sh](https://github.com/markosluga/kolla-fountain/blob/main/kolla-shaker-multi.sh)
 
-Deploys the packages on multiple nodes. Replaces the multinode kolla ansible file with the one in ~/kolla-fountain/home/kolla/multinode and copies the ssh data to kolla home .ssh.
+Deploys the packages on multiple nodes. Replaces the multinode kolla ansible file with the one in [~/kolla-fountain/home/kolla/multinode](https://github.com/markosluga/kolla-fountain/home/kolla/multinode) and copies the ssh data to kolla home .ssh. 
+
+Befroe you start make sure you have cloned this repository to all hosts. The changes in the files below (steps 4 and 5) will need to be done on the node you are deploying from - or even better in **your fork of this repository**.
 
 1. Create your .ssh files: **private and public key, authorized hosts and known hosts**. Store the files in the [kolla-fountain/home/kolla/.ssh](https://github.com/markosluga/kolla-fountain/tree/main/home/kolla/.ssh) folder. These files will be deployed to all nodes by [multi-host-prep.sh](https://github.com/markosluga/kolla-fountain/blob/main/multi-host-prep.sh). which will also passwordless sudo for the kolla user.
 
