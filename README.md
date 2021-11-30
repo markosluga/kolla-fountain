@@ -28,16 +28,6 @@ In later iterrations I enabled a small DHCP on the tunnel and provider networks 
 
 # Getting startred:
 
-## [host-prep.sh](https://github.com/markosluga/kolla-fountain/blob/main/host-prep.sh)
-
-Host prep just prepares the host with kolla as a sudoer with no password (since the scripts are doing a lot of sudo) and then adds the pv and vg for cinder
-
-* Replace /dev/sdb with your cinder device(s) at line 6 and 7 in host-prep.sh
-
-`sudo pvcreate /dev/sdb`
-
-`sudo vgcreate cinder-volumes /dev/sdb`
-
 ## [kolla-post-install.sh](https://github.com/markosluga/kolla-fountain/blob/main/kolla-post-install.sh)
 
 1. Installs openstack client
@@ -62,6 +52,16 @@ openstack subnet create --network provider1 --gateway 192.168.79.1 --subnet-rang
 Once you have edited the files above you can run the single or multi-node deployment script on the node of your choice.
 
 # Single node
+
+## [host-prep.sh](https://github.com/markosluga/kolla-fountain/blob/main/host-prep.sh)
+
+Host prep just prepares the host with kolla as a sudoer with no password (since the scripts are doing a lot of sudo) and then adds the pv and vg for cinder. To run cinder you need to add a second volume to your system that will run the cinder-volumes vg.
+
+* Replace /dev/sdb with your cinder device(s) at line 6 and 7 in host-prep.sh if you are using different ones.
+
+`sudo pvcreate /dev/sdb`
+
+`sudo vgcreate cinder-volumes /dev/sdb`
 
 ## [kolla-shaker-single.sh](https://github.com/markosluga/kolla-fountain/blob/main/kolla-shaker-single.sh)
 
@@ -91,7 +91,15 @@ Befroe you start make sure you have cloned this repository to all hosts. The cha
 
 2. Run [multi-host-prep.sh](https://github.com/markosluga/kolla-fountain/blob/main/multi-host-prep.sh) on **all** nodes beofre you run the multinode deployment.
 
-3. Run [cinder-node-prep.sh](https://github.com/markosluga/kolla-fountain/blob/main/cinder-node-prep.sh) on your storage nodes.
+3. Prep the storage nodes. To run cinder you need to add a second volume to your system that will run the cinder-volumes vg.
+
+* Replace /dev/sdb with your cinder device(s) if you are using different ones.
+
+`sudo pvcreate /dev/sdb`
+
+`sudo vgcreate cinder-volumes /dev/sdb`
+
+Run [cinder-node-prep.sh](https://github.com/markosluga/kolla-fountain/blob/main/cinder-node-prep.sh) on your storage nodes.
 
 4. Edit [~/kolla-fountain/home/kolla/multinode](https://github.com/markosluga/kolla-fountain/home/kolla/multinode)
 
