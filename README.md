@@ -3,8 +3,7 @@
 ## An easy way to deploy OpenStack with kolla.
 
 * Install Ubuntu 20.04.3 on one or more nodes.
-* Create a user called kolla - you can use the [user-kolla.sh](https://github.com/markosluga/kolla-fountain/blob/main/user-kolla.sh) script if you like. If you are going to use any other user other than kolla please change line 4 in [all-in-one](https://github.com/markosluga/kolla-fountain/blob/main/home/kolla/all-in-one) and swap 
-`ansible_user=kolla` with your username
+* Create a user called kolla - you can use the [user-kolla.sh](https://github.com/markosluga/kolla-fountain/blob/main/user-kolla.sh) script if you like. If you are going to use any other user other than kolla for deployment please change the [all-in-one](https://github.com/markosluga/kolla-fountain/blob/main/home/kolla/all-in-one)  or [multinode](https://github.com/markosluga/kolla-fountain/home/kolla/multinode) file and swap `ansible_user=kolla` with your username
 * Log in as user kolla. Now you can also delete the default ubuntu user (for security) with the following command:
 
 `sudo deluser --remove-home ubuntu`
