@@ -35,6 +35,7 @@ This will create a mariadb_backup volume and a /backup directory in which a dump
 ### Restoring a full backup
 
 1.Ensure that the mariadb_backup volume is present on the control node where you are planning to perform the restore. 
+
 2.Create a restore container with the volume attached:
 
 `sudo docker run --rm -it --volumes-from mariadb --name dbrestore --volume mariadb_backup:/backup kolla/ubuntu-binary-mariadb-server:xena /bin/bash`
