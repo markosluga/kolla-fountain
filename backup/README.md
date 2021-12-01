@@ -39,6 +39,8 @@ This will create a mariadb_backup volume and a /backup directory in which a dump
 
 `sudo docker run --rm -it --volumes-from mariadb --name dbrestore --volume mariadb_backup:/backup kolla/ubuntu-binary-mariadb-server:xena /bin/bash`
 
+* replace `ubuntu-binary-mariadb-server:xena` with your version if it is newer than xena
+
 3. Run the restore commands inside the restore container:
 
 `cd /backup`
@@ -62,6 +64,8 @@ This will create a mariadb_backup volume and a /backup directory in which a dump
 4. Start up a new mariadb container:
 
 `sudo docker run --rm -it --volumes-from mariadb --name dbrestore --volume mariadb_backup:/backup kolla/ubuntu-binary-mariadb-server:xena /bin/bash`
+
+* replace `ubuntu-binary-mariadb-server:xena` with your version if it is newer than xena
 
 5. Restore mariadb to the new container:
 
