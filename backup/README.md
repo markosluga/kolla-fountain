@@ -50,9 +50,11 @@ This will create a mariadb_backup volume and a /backup directory in which a dump
 
 `mkdir -p /backup/restore/full`
 
-`gunzip mysqlbackup-01-11-2021-1635773719.qp.xbc.xbs.gz`
+* Replace 'mysqlbackup-01-12-2021-1638409672.qp.xbc.xbs.gz' with your file name in the following 2 commands:
 
-`mbstream -x -C /backup/restore/full/ <  mysqlbackup-01-11-2021-1635773719.qp.xbc.xbs`
+`gunzip mysqlbackup-01-12-2021-1638409672.qp.xbc.xbs.gz`
+
+`mbstream -x -C /backup/restore/full/ <  mysqlbackup-01-12-2021-1638409672.qp.xbc.xbs`
 
 `mariabackup --prepare --target-dir /backup/restore/full`
 
