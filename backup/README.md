@@ -28,17 +28,18 @@ To perform a full backup, run the following command:
 
 `kolla-ansible -i INVENTORY mariadb_backup`
 
-This will create a mariadb_backup 
+This will create a mariadb_backup volume and a /backup directory in which a dump of the mariadb database will be stored. It is recommended that this backup volume is regularly backed up to a storage location off of the control nodes. A simple script that runs the above command and then copies the volume to a safe location is a good idea to have.
 
 ## Restore
 
 ### Restoring a full backup
 
-Create a restore container:
+1.Ensure that the mariadb_backup volume is present on the control node where you are planning to perform the restore. 
+2.Create a restore container with the volume attached:
 
-`sudo docker run --rm -it --volumes-from mariadb --name dbrestore --volume mariadb_backup:/backup kolla/ubuntu-binary-mariadb-server:wallaby /bin/bash`
+`sudo docker run --rm -it --volumes-from mariadb --name dbrestore --volume mariadb_backup:/backup kolla/ubuntu-binary-mariadb-server:xena /bin/bash`
 
-Run the restore commands in the restore container:
+3. Run the restore commands inside the restore container:
 
 `cd /backup`
 
@@ -52,17 +53,17 @@ Run the restore commands in the restore container:
 
 `mariabackup --prepare --target-dir /backup/restore/full`
 
-exit
-`
-Stop the restore container:
+`exit`
+
+3. Stop the restore container:
 
 `sudo docker stop mariadb`
 
-Start up a new mariadb container:
+4. Start up a new mariadb container:
 
-`sudo docker run --rm -it --volumes-from mariadb --name dbrestore --volume mariadb_backup:/backup kolla/ubuntu-binary-mariadb-server:wallaby /bin/bash`
+`sudo docker run --rm -it --volumes-from mariadb --name dbrestore --volume mariadb_backup:/backup kolla/ubuntu-binary-mariadb-server:xena /bin/bash`
 
-Restore mariadb to the new container:
+5. Restore mariadb to the new container:
 
 `rm -rf /var/lib/mysql/*`
 
@@ -70,13 +71,13 @@ Restore mariadb to the new container:
 
 `mariabackup --copy-back --target-dir /backup/restore/full`
 
-exit
-`
-Now start mariadb:
+`exit`
+
+6. Now start mariadb:
 
 `sudo docker start mariadb`
 
-Check that it started:
+7. Check that it started:
 
 `sudo docker logs mariadb`
 
