@@ -2,9 +2,9 @@
 
 ## Prep the environment
 
-** The madiadb backup user creation only works from Xena onwards **
+** The madiadb backup user creation only works from ***Xena*** onwards **
 
-***WARNING:*** If you are not using Xena, enabiling backups will fail with the following error:
+***WARNING:*** *If you are not using Xena, enabiling backups will fail with the following error:*
 
 `FAILED! => {"action": "mysql_user", "changed": false, "msg": "(1064, \"You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'BINLOG MONITOR ON *.* TO 'backup'@'%'' at line 1\")"}`
 
@@ -40,7 +40,7 @@ This will create a mariadb_backup volume and a /backup directory in which a dump
 
 `sudo docker run --rm -it --volumes-from mariadb --name dbrestore --volume mariadb_backup:/backup kolla/ubuntu-binary-mariadb-server:xena /bin/bash`
 
-* replace `ubuntu-binary-mariadb-server:xena` with your version if it is newer than xena
+* replace `ubuntu-binary-mariadb-server:xena` with your version ***if it is newer than xena***
 
 3. Run the restore commands inside the restore container:
 
