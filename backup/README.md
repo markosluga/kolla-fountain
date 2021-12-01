@@ -8,23 +8,23 @@
 
 `FAILED! => {"action": "mysql_user", "changed": false, "msg": "(1064, \"You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'BINLOG MONITOR ON *.* TO 'backup'@'%'' at line 1\")"}`
 
-### Deploy Xena and enable backups via globals.yml:
+1. Deploy Xena and enable backups via globals.yml:
 
 `enable_mariabackup: "yes"`
 
-If you have deployed Xena allready and you can just reconfigure globals.yaml and run:
+2. you have deployed Xena allready and you can just reconfigure globals.yaml and run:
 
 `kolla-ansible -i INVENTORY reconfigure -t mariadb`
 
-If you are deploying a new deployment just redeploy with:
+3. If you are deploying a new deployment just redeploy with:
 
 `kolla-ansible -i ~/multinode deploy`
 
-Wait till deployment completes.
+4. Wait till deployment completes.
 
 ## Backup
 
-To perform a full backup, run the following command:
+1. To perform a full backup, run the following command:
 
 `kolla-ansible -i INVENTORY mariadb_backup`
 
