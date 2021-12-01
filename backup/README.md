@@ -66,6 +66,8 @@ You are encouraged to back this file up off of the cluster control node.
 
 * replace `ubuntu-binary-mariadb-server:xena` with your version ***if it is newer than xena***
 
+You should now see a command prompt like this - `()[mysql@1863273b794d /]$` - you are now in the newly created container.
+
 3. Run the restore commands inside the restore container:
 
 `cd /backup`
