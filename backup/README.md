@@ -2,6 +2,12 @@
 
 ## Backup
 
+** The madiadb backup user creation only works from Xena onwards **
+
+If you are not using Xena, enabiling backups will fail with the following error:
+
+`FAILED! => {"action": "mysql_user", "changed": false, "msg": "(1064, \"You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'BINLOG MONITOR ON *.* TO 'backup'@'%'' at line 1\")"}`
+
 ### Enable backups via globals.yml:
 
 `enable_mariabackup: "yes"`
