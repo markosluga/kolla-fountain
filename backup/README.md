@@ -31,6 +31,8 @@
 
 This will create a mariadb_backup volume and a /backup directory in which a dump of the mariadb database will be stored. It is recommended that this backup volume is regularly backed up to a storage location off of the control nodes. A simple script that runs the above command and then copies the volume to a safe location is a good idea to have.
 
+* If you prefer to do incremental backups see [the OpenStack docs](https://docs.openstack.org/kolla-ansible/latest/admin/mariadb-backup-and-restore.html)
+
 ## Restore
 
 ### Restoring a full backup
@@ -89,4 +91,4 @@ This will create a mariadb_backup volume and a /backup directory in which a dump
 
 `sudo docker logs mariadb`
 
-* For Incremental backups see [the OpenStack docs](https://docs.openstack.org/kolla-ansible/latest/admin/mariadb-backup-and-restore.html)
+* To restore an incremental backups see [the OpenStack docs](https://docs.openstack.org/kolla-ansible/latest/admin/mariadb-backup-and-restore.html)
