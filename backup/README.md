@@ -1,6 +1,6 @@
 # Backup mariadb and restore
 
-## Backup
+## Prep the environment
 
 ** The madiadb backup user creation only works from Xena onwards **
 
@@ -8,13 +8,27 @@ If you are not using Xena, enabiling backups will fail with the following error:
 
 `FAILED! => {"action": "mysql_user", "changed": false, "msg": "(1064, \"You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'BINLOG MONITOR ON *.* TO 'backup'@'%'' at line 1\")"}`
 
-### Enable backups via globals.yml:
+### Deploy Xena and enable backups via globals.yml:
 
 `enable_mariabackup: "yes"`
 
-* To perform a full backup, run the following command:
+If you have deployed Xena allready and you can just reconfigure globals.yaml and run:
+
+`kolla-ansible -i INVENTORY reconfigure -t mariadb`
+
+If you are deploying a new deployment just redeploy with:
+
+`kolla-ansible -i ~/multinode deploy`
+
+Wait till deployment completes.
+
+## Backup
+
+To perform a full backup, run the following command:
 
 `kolla-ansible -i INVENTORY mariadb_backup`
+
+This will create a mariadb_backup 
 
 ## Restore
 
