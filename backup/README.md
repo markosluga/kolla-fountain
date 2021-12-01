@@ -8,19 +8,20 @@
 
 `FAILED! => {"action": "mysql_user", "changed": false, "msg": "(1064, \"You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'BINLOG MONITOR ON *.* TO 'backup'@'%'' at line 1\")"}`
 
-1. Deploy Xena and enable backups via globals.yml:
+1. Deploy Xena and enable backups via globals.yml by ensuring the following two values are configured:
 
+`openstack_release: "xena"`
 `enable_mariabackup: "yes"`
 
-2. you have deployed Xena allready and you can just reconfigure globals.yaml and run:
+2. If you have only changed `enable_mariabackup: "yes"` and are working with an already deployed OpenStack on Xena then you can just reconfigure globals.yaml and run:
 
 `kolla-ansible -i INVENTORY reconfigure -t mariadb`
 
-3. If you are deploying a new deployment just redeploy with:
+3. If you are ***upgrading to Xena*** or deploying a new deployment redeploy with:
 
 `kolla-ansible -i ~/multinode deploy`
 
-4. Wait till deployment completes.
+4. Wait untill the deployment completes.
 
 ## Backup
 
