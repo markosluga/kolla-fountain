@@ -1,5 +1,7 @@
 # Backup mariadb and restore
 
+[Right now this doesn't work](https://bugs.launchpad.net/kolla-ansible/+bug/1952966)
+
 ## Prep the environment
 
 ** The madiadb backup user creation only works from ***Xena*** onwards **
