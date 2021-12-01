@@ -11,6 +11,7 @@
 1. Deploy Xena and enable backups via globals.yml by ensuring the following two values are configured:
 
 `openstack_release: "xena"`
+
 `enable_mariabackup: "yes"`
 
 2. If you have only changed `enable_mariabackup: "yes"` and are working with an already deployed OpenStack on Xena then you can just reconfigure globals.yaml and run:
