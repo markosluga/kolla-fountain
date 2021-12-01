@@ -32,6 +32,26 @@
 
 This will create a mariadb_backup volume and a /backup directory in which a dump of the mariadb database will be stored. It is recommended that this backup volume is regularly backed up to a storage location off of the control nodes. A simple script that runs the above command and then copies the volume to a safe location is a good idea to have.
 
+To check that the new volume has been created run the following command and see if you have a volume called **mariadb_backup**:
+
+`sudo docker volume list`
+
+To see what mountpoint you have run:
+
+`sudo docker volume show mariadb_backup`
+
+Look for the Mountpoint key-value pair that looks like this: `"Mountpoint": "/var/lib/docker/volumes/mariadb_backup/_data",`
+
+List the backup volume files with the following command, replacing `/var/lib/docker/volumes/mariadb_backup/_data` to what the ooutput of your mountpoint is:
+
+`sudo ls -l /var/lib/docker/volumes/mariadb_backup/_data`
+
+The output should include the following file:
+
+-rw-r--r-- 1 42434 42434 1957783 Dec  1 21:06 mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs.gz
+
+You are encouraged to back this file up off of the cluster control node.
+
 * If you prefer to do incremental backups see [the OpenStack docs](https://docs.openstack.org/kolla-ansible/latest/admin/mariadb-backup-and-restore.html)
 
 ## Restore
@@ -54,11 +74,11 @@ This will create a mariadb_backup volume and a /backup directory in which a dump
 
 `mkdir -p /backup/restore/full`
 
-* Replace 'mysqlbackup-01-12-2021-1638409672.qp.xbc.xbs.gz' with your file name in the following 2 commands:
+* Replace 'mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs.gz' with your file name in the following 2 commands:
 
-`gunzip mysqlbackup-01-12-2021-1638409672.qp.xbc.xbs.gz`
+`gunzip mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs.gz`
 
-`mbstream -x -C /backup/restore/full/ <  mysqlbackup-01-12-2021-1638409672.qp.xbc.xbs`
+`mbstream -x -C /backup/restore/full/ <  mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs`
 
 `mariabackup --prepare --target-dir /backup/restore/full`
 
