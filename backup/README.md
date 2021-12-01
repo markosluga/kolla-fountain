@@ -16,7 +16,7 @@
 
 2. If you have only changed `enable_mariabackup: "yes"` and are working with an already deployed OpenStack on Xena then you can just reconfigure globals.yaml and run:
 
-`kolla-ansible -i INVENTORY reconfigure -t mariadb`
+`kolla-ansible -i ~/multinode reconfigure -t mariadb`
 
 3. If you are ***upgrading to Xena*** or deploying a new deployment redeploy with:
 
@@ -28,7 +28,7 @@
 
 1. To perform a full backup, run the following command:
 
-`kolla-ansible -i INVENTORY mariadb_backup`
+`kolla-ansible -i ~/multinode mariadb_backup`
 
 This will create a mariadb_backup volume and a /backup directory in which a dump of the mariadb database will be stored. It is recommended that this backup volume is regularly backed up to a storage location off of the control nodes. A simple script that runs the above command and then copies the volume to a safe location is a good idea to have.
 
