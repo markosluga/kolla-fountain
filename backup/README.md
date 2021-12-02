@@ -1,7 +1,5 @@
 # Backup mariadb and restore
 
-[Right now this doesn't work](https://bugs.launchpad.net/kolla-ansible/+bug/1952966)
-
 ## Prep the environment
 
 ** The madiadb backup user creation only works from ***Xena*** onwards **
@@ -34,35 +32,67 @@
 
 This will create a mariadb_backup volume and a /backup directory in which a dump of the mariadb database will be stored. It is recommended that this backup volume is regularly backed up to a storage location off of the control nodes. A simple script that runs the above command and then copies the volume to a safe location is a good idea to have.
 
-To check that the new volume has been created run the following command and see if you have a volume called **mariadb_backup**:
+2. To check that the new volume has been created run the following command and see if you have a volume called **mariadb_backup**:
 
 `sudo docker volume list`
 
-To see what mountpoint you have run:
+3. To see what mountpoint you have run:
 
 `sudo docker volume show mariadb_backup`
 
-Look for the Mountpoint key-value pair that looks like this: `"Mountpoint": "/var/lib/docker/volumes/mariadb_backup/_data",`
+4. Look for the Mountpoint key-value pair that looks like this: `"Mountpoint": "/var/lib/docker/volumes/mariadb_backup/_data",`
 
 List the backup volume files with the following command, replacing `/var/lib/docker/volumes/mariadb_backup/_data` to what the ooutput of your mountpoint is:
 
 `sudo ls -l /var/lib/docker/volumes/mariadb_backup/_data`
 
-The output should include the following file:
+5. The output should include the following file:
 
 -rw-r--r-- 1 42434 42434 1957783 Dec  1 21:06 mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs.gz
 
-You are encouraged to back this file up off of the cluster control node.
+You are encouraged to back this file up off of the cluster control nodes as well.
 
 * If you prefer to do incremental backups see [the OpenStack docs](https://docs.openstack.org/kolla-ansible/latest/admin/mariadb-backup-and-restore.html)
+
 
 ## Restore
 
 ### Restoring a full backup
 
-1.Ensure that the mariadb_backup volume is present on the control node where you are planning to perform the restore. 
+6. Now we need to replicate this backup to the other controller nodes. 
 
-2.Create a restore container with the volume attached:
+Copu the backup file from the volume to the home. 
+
+`sudo cp /var/lib/docker/volumes/mariadb_backup/_data/mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs /home/kolla/mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs.gz`
+
+7. Change the ownership so we can shipt it to the other nodes:
+
+`sudo chown $USER:$USER ~/mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs.gz`  
+
+8. Copy it over to each of the other controller nodes:
+
+`scp ~/mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs kolla@kolla06:/home/kolla/mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs.gz`
+
+* Replace kolla06 with your host names
+
+9. On youre other **controller nodes**, create a mariadb_backup docker volume and Copy the backup file into the volume.
+
+`sudo docker volume create mariadb_backup`
+
+`sudo cp ~/mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs.gz /var/lib/docker/volumes/mariadb_backup/_data/mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs.gz`
+
+10. Change the owner to the docker user ID of the output in step 5. 
+
+`sudo chown 42434:42434 /var/lib/docker/volumes/mariadb_backup/_data`
+
+`sudo chown 42434:42434 /var/lib/docker/volumes/mariadb_backup/_data/mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs.gz'
+
+* Replace 42434 with the ID that matrches your docker mariadb user 
+
+
+11.Ensure that the mariadb_backup volume is present on the control node where you are planning to perform the restore. 
+
+12.Create a restore container with the volume attached:
 
 `sudo docker run --rm -it --volumes-from mariadb --name dbrestore --volume mariadb_backup:/backup kolla/ubuntu-binary-mariadb-server:xena /bin/bash`
 
@@ -70,7 +100,7 @@ You are encouraged to back this file up off of the cluster control node.
 
 You should now see a command prompt like this - `()[mysql@1863273b794d /]$` - you are now in the newly created container.
 
-3. Run the restore commands inside the restore container:
+13. Run the restore commands inside the restore container:
 
 `cd /backup`
 
@@ -88,17 +118,17 @@ You should now see a command prompt like this - `()[mysql@1863273b794d /]$` - yo
 
 `exit`
 
-3. Stop the restore container:
+14. Stop the restore container:
 
 `sudo docker stop mariadb`
 
-4. Start up a new mariadb container:
+15. Start up a new mariadb container:
 
 `sudo docker run --rm -it --volumes-from mariadb --name dbrestore --volume mariadb_backup:/backup kolla/ubuntu-binary-mariadb-server:xena /bin/bash`
 
 * replace `ubuntu-binary-mariadb-server:xena` with your version if it is newer than xena
 
-5. Restore mariadb to the new container:
+16. Restore mariadb to the new container:
 
 `rm -rf /var/lib/mysql/*`
 
@@ -108,12 +138,24 @@ You should now see a command prompt like this - `()[mysql@1863273b794d /]$` - yo
 
 `exit`
 
-6. Now start mariadb:
+17. Now start mariadb:
 
 `sudo docker start mariadb`
 
-7. Check that it started:
+18. Check that it started:
 
 `sudo docker logs mariadb`
 
+19. Verify that you have ran these steps on all nodes.
+
+20. At this point the documentation says your cluster should be up and running. Mine never did so after I completed the steps above on all mariadb nodes I ran the mariadb_recovery to restore OpenStack functionality.
+
+`kolla-ansible -i ~/multinode mariadb_recovery`
+
+Your cluster should be up and running now.
+
 * To restore an incremental backups see [the OpenStack docs](https://docs.openstack.org/kolla-ansible/latest/admin/mariadb-backup-and-restore.html)
+
+* Right now the procedure required to bring the cluster up after a restrore needs step 20 - this is not described in the OpenStack documentation. 
+
+* [I have submitted a bug, and a workaround](https://bugs.launchpad.net/kolla-ansible/+bug/1952966)
