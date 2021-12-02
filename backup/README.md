@@ -71,7 +71,7 @@ Copu the backup file from the volume to the home.
 
 8. Copy it over to each of the other controller nodes:
 
-`scp ~/mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs kolla@kolla06:/home/kolla/mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs.gz`
+`scp ~/mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs.gz kolla@kolla06:/home/kolla/mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs.gz`
 
 * Replace kolla06 with your host names
 
@@ -88,7 +88,6 @@ Copu the backup file from the volume to the home.
 `sudo chown 42434:42434 /var/lib/docker/volumes/mariadb_backup/_data/mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs.gz'
 
 * Replace 42434 with the ID that matrches your docker mariadb user 
-
 
 11.Ensure that the mariadb_backup volume is present on the control node where you are planning to perform the restore. 
 
@@ -144,11 +143,11 @@ You should now see a command prompt like this - `()[mysql@1863273b794d /]$` - yo
 
 18. Check that it started:
 
-`sudo docker logs mariadb`
+`sudo docker ps | grep mariadb`
 
 19. Verify that you have ran these steps on all nodes.
 
-20. At this point the documentation says your cluster should be up and running. Mine never did so after I completed the steps above on all mariadb nodes I ran the mariadb_recovery to restore OpenStack functionality.
+20. At this point the documentation says your cluster should be up and running. Mine never did so after I completed the steps above on all mariadb nodes I ran the mariadb_recovery to restore OpenStack functionality. If you run the recovery without overwriting the database backup to ALL nodes mariadb_recovery will recover the newest database state and not the backup that you are trying to restore. If this happens just go back to step 6 and re-run all the commands on ALL mariadb (controller) nodes.
 
 `kolla-ansible -i ~/multinode mariadb_recovery`
 
