@@ -48,7 +48,7 @@ List the backup volume files with the following command, replacing `/var/lib/doc
 
 5. The output should include the following file:
 
--rw-r--r-- 1 42434 42434 1957783 Dec  1 21:06 mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs.gz
+*-rw-r--r-- 1 42434 42434 1957783 Dec  1 21:06 mysqlbackup-01-12-2021-1638392789.qp.xbc.xbs.gz*
 
 You are encouraged to back this file up off of the cluster control nodes as well.
 
