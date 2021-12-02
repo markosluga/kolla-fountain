@@ -99,6 +99,8 @@ Run [cinder-node-prep.sh](https://github.com/markosluga/kolla-fountain/blob/main
 
 Multiple host format is *host[startnumber,endnumber]* - kolla[02:03] represents hosts kolla02 and kolla03, kolla[02:04] represents hosts kolla02, kolla03 and kolla04.
 
+This file wil lbe copied to ~/multinode and the deployment will use the copied file. If you are chjanging things after the fact please make sure you are changing the corect file.
+
 Replace the following:
 
 [control]
