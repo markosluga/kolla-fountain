@@ -1,4 +1,4 @@
-# The kolla-fountain v.1.2.1
+# The kolla-fountain v.2.0.2
 
 ## An easy way to deploy OpenStack with kolla.
 
